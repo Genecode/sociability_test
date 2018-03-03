@@ -1,4 +1,4 @@
-require_relative "print_test_result"
+require_relative "test_result"
 require_relative "test"
 
 VERSION = "Тест \"Ваш уровень общительности\". Версия 0.2. \n\n"
@@ -28,9 +28,9 @@ end
 
 test.size.times do |question_number|
   puts test.next_question(question_number)
-  puts test.ANSWER #Варианты ответов
+  puts test.answer_variants
   test.get_user_answer
 end
 
-print_result = PrintTestResult.new
-print_result.print_result(test.test_result)
+result = TestResult.new
+result.print_result(test.test_result)

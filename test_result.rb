@@ -1,7 +1,6 @@
-class PrintTestResult
-
+class TestResult
   def initialize
-    @RESULTS = {
+    @results = {
       (30..32) => "Что скрывать, вы некоммуникабельны, и страдаете от этого прежде всего сами." \
       " Но и окружающим очень трудно с вами, ведь там, где необходимы совместные усилия, вы совершенно" \
       " теряетесь. Почему вы так неохотно общаетесь? Неужели в вашем окружении совсем нет интересных людей? " \
@@ -20,13 +19,6 @@ class PrintTestResult
   end
 
   def print_result(test_result)
-    @RESULTS.each do |key, value|
-      if key.include?(test_result)
-        puts value
-        break #чтоб не проходить весь массив
-      end
-    end
+    @results.each { |key, value| puts value if key.include?(test_result) }
   end
-
-
 end
