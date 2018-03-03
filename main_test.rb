@@ -1,7 +1,7 @@
 require_relative "print_test_result"
 require_relative "test"
 
-version = "Тест \"Ваш уровень общительности\". Версия 0.2. \n\n"
+VERSION = "Тест \"Ваш уровень общительности\". Версия 0.2. \n\n"
 name = ARGV[0]
 # Код для преобразования входного аргумента в кодировку utf-8 на Windows
 if Gem.win_platform? && ARGV[0]
@@ -10,18 +10,27 @@ end
 if name == nil
   name = "anonimus"
 elsif name == "-v"
-  puts version
+  puts VERSION
   exit
 end
 
 puts "Добрый день, #{name}! Тест поможет определить ваш уровень коммуникабельности. \n" \
      "Для этого необходимо правдиво ответить на следующие вопросы. \n\n"
 
-test = Test.new
+current_path = File.dirname(__FILE__)
+question_file_path = "#{current_path}/data/question.txt"
+if File.exist?(question_file_path)
+  test = Test.new(question_file_path)
+else
+  puts 'Файл не найден'
+  exit
+end
+
 test.size.times do |question_number|
   puts test.next_question(question_number)
-  puts test.answer_s #Варианты ответов
+  puts test.ANSWER #Варианты ответов
   test.get_user_answer
 end
 
-PrintTestResult.new(test.test_result)
+print_result = PrintTestResult.new
+print_result.print_result(test.test_result)
