@@ -6,7 +6,7 @@
 ruby версии 2.4.1
 ## Запуск
 ```
-$ ruby ./main.rb
+$ ruby ./main_test.rb
 ```
 ## Поддерживаемые языки(support language):
 Только русский (russian only)
